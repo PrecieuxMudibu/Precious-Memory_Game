@@ -6,4 +6,6 @@ function hide (element) {
     element.classList.add("hide");
 }
 
-const test = 0;
+function shuffleCards (cards) {
+    cards.sort(() => Math.random() - 0.5);
+}

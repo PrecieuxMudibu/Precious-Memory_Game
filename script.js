@@ -10,19 +10,6 @@ let interval;
 let firstCard = false;
 let secondCard = false;
 
-const items = [
-    { name: "captain_america", image: "images/captain_america.jpg"},
-    { name: "casque_iron_man", image: "images/casque_iron_man.png"},
-    { name: "deadpool", image: "images/deadpool.png"},
-    { name: "groot", image: "images/groot.jpg"},
-    { name: "iron_man", image: "images/iron_man.jpg"},
-    { name: "itachi", image: "images/itachi.png"},
-    { name: "miles_morales", image: "images/miles_morales.jpg"},
-    { name: "naruto", image: "images/naruto.png"},
-    { name: "sasuke", image: "images/sasuke.png"},
-    { name: "tete_rdj", image: "images/tete_rdj.jpg"},
-]
-
 let seconds = 0,
     minutes = 0;
 
@@ -40,7 +27,7 @@ const timerGenerator = () => {
     let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
     let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
 
-    timeValue.innerHtml = `<span>Time:</span> ${minutesValue}:${secondsValue}`;
+    timeValue.innerHTML = `<span>Time:</span> ${minutesValue}:${secondsValue}`;
 }
 
 const movesCounter = () => {
@@ -66,12 +53,13 @@ const generateRandom = (size = 4) => {
     return cardValues;
 }
 
+
+
 const matrixGenerator = (cardValues, size = 4) => {
     gameContainer.innerHTML = "";
     cardValues = [...cardValues, ...cardValues];
 
-    // Simple shuffle
-    cardValues.sort(() => Math.random() - 0.5);
+    shuffleCards(cardValues);
 
     for (let i = 0; i < size * size; i++) {
         gameContainer.innerHTML += `
@@ -169,6 +157,5 @@ const initializer = () => {
     result.innerText = "";
     winCount = 0;
     let cardValues = generateRandom();
-    console.log(cardValues);
     matrixGenerator(cardValues);
 }
