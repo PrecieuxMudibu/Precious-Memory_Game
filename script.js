@@ -89,42 +89,55 @@ const matrixGenerator = (cardValues, size = 4) => {
     cards.forEach((card) => {
         card.addEventListener("click", () => {
             if (!card.classList.contains("matched")) {
-                card.classList.add("flipped");
-
+                // card.classList.add("flipped");
+                
                 if (!firstCard) {
                     firstCard = card;
+                    firstCard.firstElementChild.style.transform = "rotateY(180deg)";
+                    firstCard.lastElementChild.style.transform = "rotateY(360deg)";
+
                     firstCardValue = card.getAttribute ("data-card-value");
                 } else {
                     movesCounter();
                     secondCard = card;
+                    secondCard.firstElementChild.style.transform = "rotateY(180deg)";
+                    secondCard.lastElementChild.style.transform = "rotateY(360deg)";
                     let secondCardValue = card.getAttribute("data-card-value");
     
-                    if (firstCardValue == secondCardValue) {
-                        firstCard.classList.add("matched");
-                        secondCard.classList.add("matched");
+                    setTimeout(() => {
+                        if (firstCardValue == secondCardValue) {
+                            firstCard.classList.add("matched");
+                            secondCard.classList.add("matched");
+        
+                            firstCard =  false;
+        
+                            winCount += 1;
+        
+                            if (winCount == Math.floor(cardValues.length / 2)) {
+                                result.innerHTML = `<h2>You won</h2>
+                                <h4>Moves: ${movesCount}</h4>`;
+                                stopGame()
+                            }     
+                        } else {
+                            firstCard.firstElementChild.style.transform = "rotateY(0deg)";
+                            firstCard.lastElementChild.style.transform = "rotateY(180deg)";
     
-                        firstCard =  false;
-    
-                        winCount += 1;
-    
-                        if (winCount == Math.floor(cardValues.length / 2)) {
-                            result.innerHTML = `<h2>You won</h2>
-                            <h4>Moves: ${movesCount}</h4>`;
-                            stopGame()
-                        }     
-                    } else {
-                        let [tempFirst, tempSecond] = [firstCard, secondCard];
-                        firstCard = false;
-                        secondCard = false;
-                        let delay = setTimeout(() => {
-                            tempFirst.classList.remove("flipped");
-                            tempSecond.classList.remove("flipped");
-                        }, 900)
-                    }
+                            secondCard.firstElementChild.style.transform = "rotateY(0deg)";
+                            secondCard.lastElementChild.style.transform = "rotateY(180deg)";
+                            let [tempFirst, tempSecond] = [firstCard, secondCard];
+                            firstCard = false;
+                            secondCard = false;
+                            let delay = setTimeout(() => {
+                                tempFirst.classList.remove("flipped");
+                                tempSecond.classList.remove("flipped");
+                            }, 900)
+                        }
+                    }, 1500)
                 }
             } 
         })
     })
+
 }
 
 startButton.addEventListener("click", () => {
@@ -148,7 +161,7 @@ stopButton.addEventListener(
       controls.classList.remove("hide");
       stopButton.classList.add("hide");
       startButton.classList.remove("hide");
-    //   clearInterval(interval);
+      clearInterval(interval);
     })
   );
 
