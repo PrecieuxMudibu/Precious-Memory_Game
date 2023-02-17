@@ -64,7 +64,7 @@ body {
     align-items: center;
     justify-content: center;
     border: 5px solid black;
-    transition: transform 1s ease-out;
+    transition: transform .4s ease-out;
     backface-visibility: hidden;
 }
 
@@ -99,13 +99,13 @@ body {
 } */
 
 
-/* .card-container.flipped.card-before {
+.card-container.flipped .card-before {
     transform: rotateY(180deg);
 }
 
-.card-container.flipped.card-after {
+.card-container.flipped .card-after {
     transform: rotateY(360deg);
-} */
+}
 
 .matched {
     transform: rotateY(360deg);

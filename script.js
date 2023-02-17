@@ -53,13 +53,11 @@ const generateRandom = (size = 4) => {
     return cardValues;
 }
 
-
-
 const matrixGenerator = (cardValues, size = 4) => {
     gameContainer.innerHTML = "";
     cardValues = [...cardValues, ...cardValues];
 
-    shuffleCards(cardValues);
+    shuffle(cardValues);
 
     for (let i = 0; i < size * size; i++) {
         gameContainer.innerHTML += `
@@ -77,22 +75,17 @@ const matrixGenerator = (cardValues, size = 4) => {
     cards.forEach((card) => {
         card.addEventListener("click", () => {
             if (!card.classList.contains("matched")) {
-                // card.classList.add("flipped");
+                flip(card);
                 
                 if (!firstCard) {
                     firstCard = card;
-                    firstCard.firstElementChild.style.transform = "rotateY(180deg)";
-                    firstCard.lastElementChild.style.transform = "rotateY(360deg)";
-
                     firstCardValue = card.getAttribute ("data-card-value");
                 } else {
                     movesCounter();
                     secondCard = card;
-                    secondCard.firstElementChild.style.transform = "rotateY(180deg)";
-                    secondCard.lastElementChild.style.transform = "rotateY(360deg)";
                     let secondCardValue = card.getAttribute("data-card-value");
     
-                    setTimeout(() => {
+                   let delay = setTimeout(() => {
                         if (firstCardValue == secondCardValue) {
                             firstCard.classList.add("matched");
                             secondCard.classList.add("matched");
@@ -107,20 +100,12 @@ const matrixGenerator = (cardValues, size = 4) => {
                                 stopGame()
                             }     
                         } else {
-                            firstCard.firstElementChild.style.transform = "rotateY(0deg)";
-                            firstCard.lastElementChild.style.transform = "rotateY(180deg)";
-    
-                            secondCard.firstElementChild.style.transform = "rotateY(0deg)";
-                            secondCard.lastElementChild.style.transform = "rotateY(180deg)";
-                            let [tempFirst, tempSecond] = [firstCard, secondCard];
+                            toOriginalPositionFlip(firstCard);
+                            toOriginalPositionFlip(secondCard);
                             firstCard = false;
                             secondCard = false;
-                            let delay = setTimeout(() => {
-                                tempFirst.classList.remove("flipped");
-                                tempSecond.classList.remove("flipped");
-                            }, 900)
                         }
-                    }, 1500)
+                    }, 400)
                 }
             } 
         })
