@@ -4,7 +4,7 @@ This is the GraphAPI for the hannael-ai front-end.
 
 ## Installation
 
-First clone this repo. Open your terminale and type :
+First clone this repo. Open your terminal and type :
 
 ```bash
 git clone https://github.com/PrecieuxMudibu/Precious-Memory_Game.git
