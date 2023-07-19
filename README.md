@@ -1,7 +1,5 @@
 # **Precious-Memory_Game**
 
-This is the GraphAPI for the hannael-ai front-end.
-
 ## Installation
 
 First clone this repo. Open your terminal and type :
@@ -22,4 +20,4 @@ You have just to open the index.html file.
 
 ## Authors
 
-[Precieux Mudibu](https://github.com/PrecieuxMudibu)
+[Précieux Mudibu](https://github.com/PrecieuxMudibu)
