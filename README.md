@@ -18,6 +18,6 @@ cd Precious-Memory_Game
 
 You have just to open the index.html file.
 
-## Authors
+## Author
 
 [Précieux Mudibu](https://github.com/PrecieuxMudibu)
